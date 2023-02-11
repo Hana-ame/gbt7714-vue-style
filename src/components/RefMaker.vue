@@ -1,21 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { NInput }  from 'naive-ui'
 
 // defineProps<{ msg: string }>()
 
-const count = ref(0)
+const input = ref("all")
 
-const value = ref("")
+const result = computed({
+  get() {
+    // console.log('get')
+    return input.value
+  },
+  set(newValue) {
+    // console.log('set')
+    input.value = newValue
+  }
+})
 
 </script>
 
 <template>
     <n-input
-      v-model:value="value"
+      v-model:value="input"
       type="textarea"
     />
-    {{ value }}
+    {{ input }}
+    <n-input
+      v-model:value="result"
+      type="textarea"
+    />
 </template>
 
 <style>
