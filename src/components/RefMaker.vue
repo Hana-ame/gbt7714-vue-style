@@ -17,8 +17,16 @@ const obj = computed(() => {
   // console.log(this)
   console.log("obj", obj)
   console.log(input)
+
+  const reWrap:RegExp = /@(\w+)\{((.|)*)\}/
+  const arr = reWrap.exec(input.value)
+
+  console.log(arr)
+  
+
   return {
     "input": input,
+    "arr": arr,
   }
 })
 
