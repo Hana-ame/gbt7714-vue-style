@@ -18,15 +18,39 @@ const obj = computed(() => {
   console.log("obj", obj)
   console.log(input)
 
-  const reWrap:RegExp = /@(\w+)\{((.|)*)\}/
+  const reWrap:RegExp = /@(\w+)\{((?:.|\s)*)\}/
   const arr = reWrap.exec(input.value)
 
   console.log(arr)
+
+  if (arr === null){
+    return { input }
+  }
+  const type = arr[1]
+  const params = arr[2]
+
+  let reParams = /\s*((?:.)*?)={((?:.)*)}/g
+
+  // const paramArr = reParams.exec(params)
   
+  console.log("reParams.exec(params)")
+  for (let i=0; i<20; i++) {
+    console.log(reParams)
+    const m = reParams.exec(params);
+    console.log(reParams)
+    if (m) {
+      console.log(m[1],m[2])
+    } else {
+      break
+    }
+  }
 
   return {
     "input": input,
     "arr": arr,
+    "type": type,
+    "params": params,
+    // "paramArr": paramArr,
   }
 })
 
