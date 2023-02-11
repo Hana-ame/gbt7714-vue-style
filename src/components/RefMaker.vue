@@ -18,8 +18,8 @@ const value = ref("")
     {{ value }}
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
+<style>
+  n-input {
+    width: 100%;
+  }
 </style>
