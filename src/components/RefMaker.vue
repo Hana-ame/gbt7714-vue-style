@@ -6,21 +6,32 @@ import { NInput }  from 'naive-ui'
 
 const input = ref("all")
 
-let arr = [1,2,3]
-const arrr = ref([1,2,3])
-const arrrr = reactive([1,2,3])
+// let arr = [1,2,3]
+// const arrr = ref([1,2,3])
+// const arrrr = reactive([1,2,3])
 
-console.log(arr,arrr,arrrr)
+// console.log(arr,arrr,arrrr)
 
-const result = computed({
+// 监视某个变量改动？
+const obj = computed(() => {
+  // console.log(this)
+  console.log("obj", obj)
+  console.log(input)
+  return {
+    "input": input,
+  }
+})
+
+const result = computed<string>({
   get() {
-    arr.push(arr[arr.length-3])
+    // arr.push(arr[arr.length-3])
     // console.log('get')
-    return input.value    
+    // return obj.input.value
+    return "getter"
   },
-  set(newValue) {
-    // console.log('set')
-    input.value = newValue
+  set(newValue: any) {
+    // console.log(result)
+    // input.value = newValue
   }
 })
 
@@ -33,7 +44,9 @@ const result = computed({
     />
     {{ input }}
     <hr />
-    {{ arr }}
+    {{ obj }}
+    <hr />
+    {{ result }}
     <n-input
       v-model:value="result"
       type="textarea"
